@@ -1,26 +1,78 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+	--background: #ffffff;
+	--foreground: #171717;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--font-sans: var(--font-geist-sans);
+	--font-mono: var(--font-geist-mono);
+
+	/** Font Families */
+	--font-bellefair: "Bellefair", serif;
+	--font-barlow: "Barlow", sans-serif;
+	--font-barlow-condensed: "Barlow Condensed", sans-serif;
+
+	/** Color */
+	--color-space-blue-900: oklch(16.23% 0.0214 275.07);
+	--color-space-blue-300: oklch(88.26% 0.0486 277.68);
+	--color-space-white: oklch(100% 0 0);
+
+	/** Spacing */
+	--spacing-space-preset-1600: 128px;
+	--spacing-space-preset-1200: 96px;
+	--spacing-space-preset-1000: 80px;
+	--spacing-space-preset-800: 64px;
+	--spacing-space-preset-600: 48px;
+	--spacing-space-preset-500: 40px;
+	--spacing-space-preset-400: 32px;
+	--spacing-space-preset-300: 24px;
+	--spacing-space-preset-200: 16px;
+	--spacing-space-preset-150: 12px;
+	--spacing-space-preset-100: 8px;
+	--spacing-space-preset-50: 4px;
+	--spacing-space-preset-25: 2px;
+
+	/** Tracking (Letter Spacing) */
+	--tracking-space-normal: 0px;
+	--tracking-space-wide: 2px;
+	--tracking-space-wider: 4px;
+
+	/** Leading (Line Height) */
+	--spacing-space-preset-1: 171.9%;
+	--spacing-space-preset-2: 114.6%;
+	--spacing-space-preset-3: 64.2%;
+	--spacing-space-preset-4: 36.7%;
+	--spacing-space-preset-5: 33.6%;
+	--spacing-space-preset-6: 32.1%;
+	--spacing-space-preset-7: 16.8%;
+	--spacing-space-preset-8: 19.2%;
+	--spacing-space-preset-9: 180%;
+
+	/** Font Size */
+	--text-space-preset-1-size: 144px;
+	--text-space-preset-2-size: 100px;
+	--text-space-preset-3-size: 56px;
+	--text-space-preset-4-size: 32px;
+	--text-space-preset-5-size: 28px;
+	--text-space-preset-6-size: 28px;
+	--text-space-preset-7-size: 14px;
+	--text-space-preset-8-size: 16px;
+	--text-space-preset-9-size: 18px;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+	:root {
+		--background: #0a0a0a;
+		--foreground: #ededed;
+	}
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+	background: var(--background);
+	color: var(--foreground);
+	font-family: Arial, Helvetica, sans-serif;
 }
