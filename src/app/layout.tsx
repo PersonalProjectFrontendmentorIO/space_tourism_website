@@ -4,6 +4,8 @@ import { barlow, barlowCondensed, bellefair } from "./fonts/fonts";
 
 import "./globals.css";
 
+import Navbar from "@/components/ui/navbar";
+
 const geistSans = Geist({
 	variable: "--font-geist-sans",
 	subsets: ["latin"],
@@ -36,7 +38,8 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} ${bellefair.variable} ${barlow.variable} ${barlowCondensed.variable} antialiased`}
 			>
-				{children}
+				<Navbar />
+				<main>{children}</main>
 			</body>
 		</html>
 	);
