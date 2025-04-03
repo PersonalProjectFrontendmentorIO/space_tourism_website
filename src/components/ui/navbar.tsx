@@ -40,23 +40,26 @@ const Navbar = () => {
 					<div className="hidden md:hidden xl:block absolute top-1/2 left-[12%] w-[40%] h-[2px] bg-space-white opacity-25 z-20"></div>
 
 					<div className="hidden md:flex md:pl-[117px] xl:pl-0 justify-end backdrop-blur-2xl text-space-white bg-space-white/10 items-center content-center md:w-[640px] xl:w-[50%] h-24">
-						{navItems.map((item, index) => (
-							<a
-								key={item.id}
-								href={item.path}
-								className="font-barlow-condensed tracking-space-wide flex pr-space-preset-600 2xl:pr-space-preset-1000 cursor-pointer h-full items-center align-middle content-center"
-							>
-								<div className="flex relative h-full xl:text-space-preset-9-size">
-									<div className="flex gap-3 h-full items-center">
-										<div className="font-bold">0{index}</div>
-										<div>{item.label}</div>
+						{navItems.map((item, index) => {
+							const isActive = currentPath.startsWith(item.path);
+							return (
+								<a
+									key={item.id}
+									href={item.path}
+									className="font-barlow-condensed tracking-space-wide flex pr-space-preset-600 2xl:pr-space-preset-1000 cursor-pointer h-full items-center align-middle content-center"
+								>
+									<div className="flex relative h-full xl:text-space-preset-9-size">
+										<div className="flex gap-3 h-full items-center">
+											<div className="font-bold">0{index}</div>
+											<div>{item.label}</div>
+										</div>
+										{isActive && (
+											<div className="absolute left-0 bottom-0 w-full h-[3px] bg-space-white rounded-full"></div>
+										)}
 									</div>
-									{currentPath === item.path && (
-										<div className="absolute left-0 bottom-0 w-full h-[3px] bg-space-white rounded-full"></div>
-									)}
-								</div>
-							</a>
-						))}
+								</a>
+							);
+						})}
 					</div>
 				</div>
 
