@@ -1,7 +1,8 @@
 interface NavItem {
-  id: string;
-  label: string;
-  path: string;
+	id: string;
+	label: string;
+	path: string;
+	matchStrategy?: "exact" | "startsWith";
 }
 
 export const navItems: NavItem[] = [
@@ -13,7 +14,7 @@ export const navItems: NavItem[] = [
 	{
 		id: "DESTINATION",
 		label: "DESTINATION",
-		path: "/destination/moon",
+		path: "/destination",
 	},
 	{
 		id: "CREW",
@@ -26,3 +27,13 @@ export const navItems: NavItem[] = [
 		path: "/technology",
 	},
 ];
+
+export const isNavActive = (navItem: NavItem, currentPath: string) => {
+	const strategy =
+		navItem.matchStrategy ??
+		(navItem.path === "/destination" ? "startsWith" : "exact");
+
+	return strategy === "startsWith"
+		? currentPath.startsWith(navItem.path)
+		: currentPath === navItem.path;
+};

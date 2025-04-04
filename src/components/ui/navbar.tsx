@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import { Menu } from "lucide-react";
@@ -14,14 +14,12 @@ import {
 	SheetTitle,
 	SheetTrigger,
 } from "./sheet";
-import { navItems } from "@/lib/navItems";
+import { isNavActive, navItems } from "@/lib/navItems";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const Navbar = () => {
-	const [currentPath, setCurrentPath] = useState("/");
-
-	useEffect(() => {
-		setCurrentPath(window.location.pathname);
-	}, []);
+	const currentPath = usePathname();
 
 	return (
 		<div className="fixed top-0 left-0 w-full z-50">
@@ -41,11 +39,16 @@ const Navbar = () => {
 
 					<div className="hidden md:flex md:pl-[117px] xl:pl-0 justify-end backdrop-blur-2xl text-space-white bg-space-white/10 items-center content-center md:w-[640px] xl:w-[50%] h-24">
 						{navItems.map((item, index) => {
-							const isActive = currentPath.startsWith(item.path);
+							const isActive = isNavActive(item, currentPath);
+
 							return (
-								<a
+								<Link
 									key={item.id}
-									href={item.path}
+									href={
+										item.path === "/destination"
+											? "/destination/moon"
+											: item.path
+									}
 									className="font-barlow-condensed tracking-space-wide flex pr-space-preset-600 2xl:pr-space-preset-1000 cursor-pointer h-full items-center align-middle content-center"
 								>
 									<div className="flex relative h-full xl:text-space-preset-9-size">
@@ -57,7 +60,7 @@ const Navbar = () => {
 											<div className="absolute left-0 bottom-0 w-full h-[3px] bg-space-white rounded-full"></div>
 										)}
 									</div>
-								</a>
+								</Link>
 							);
 						})}
 					</div>
@@ -76,23 +79,31 @@ const Navbar = () => {
 								<SheetDescription className="sr-only" />
 							</SheetHeader>
 							<div className="my-space-preset-600">
-								{navItems.map((item, index) => (
-									<a
-										key={item.id}
-										href={item.path}
-										className="font-barlow-condensed flex gap-3 cursor-pointer flex-col tracking-space-wide pb-space-preset-600"
-									>
-										<div className="flex flex-col w-full relative">
-											<div className="flex gap-x-3 ml-8">
-												<div className="font-bold">0{index}</div>
-												<div>{item.label}</div>
+								{navItems.map((item, index) => {
+									const isActive = isNavActive(item, currentPath);
+
+									return (
+										<Link
+											key={item.id}
+											href={
+												item.path === "/destination"
+													? "/destination/moon"
+													: item.path
+											}
+											className="font-barlow-condensed flex gap-3 cursor-pointer flex-col tracking-space-wide pb-space-preset-600"
+										>
+											<div className="flex flex-col w-full relative">
+												<div className="flex gap-x-3 ml-8">
+													<div className="font-bold">0{index}</div>
+													<div>{item.label}</div>
+												</div>
+												{isActive && (
+													<div className="absolute right-0 top-0 h-full w-[4px] rounded-full bg-space-white"></div>
+												)}
 											</div>
-											{currentPath === item.path && (
-												<div className="absolute right-0 top-0 h-full w-[4px] rounded-full bg-space-white"></div>
-											)}
-										</div>
-									</a>
-								))}
+										</Link>
+									);
+								})}
 							</div>
 						</SheetContent>
 					</Sheet>
