@@ -14,9 +14,9 @@ const DestinationImage = ({
 			<Image
 				src={planetImage}
 				alt={`Image of ${planetName}`}
-				width={480}
-				height={480}
-				className="w-[150px] h-[150px]"
+				width={150}
+				height={150}
+				className="md:w-[300px] md:h-[300px] xl:w-[480px] xl:h-[450px]"
 			/>
 		</div>
 	);
