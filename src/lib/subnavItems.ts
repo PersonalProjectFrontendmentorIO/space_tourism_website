@@ -1,5 +1,3 @@
-import { DestinationKey } from "./destinationImages";
-
 interface SubnavItem {
 	id: string;
 	label: string;
@@ -28,8 +26,3 @@ export const subnavItems: SubnavItem[] = [
 		path: "/destination/titan",
 	},
 ];
-
-export const getCurrentDestination = (pathName: string): DestinationKey => {
-	const parts = pathName.split("/");
-	return (parts[parts.length - 1] as DestinationKey) || "moon";
-};
